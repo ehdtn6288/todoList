@@ -1,21 +1,22 @@
-const clockContain = document.querySelector(".clock"),
-  clockTime = clockContain.querySelector("h1");
+const clockContainer = document.querySelector(".clock"),
+  clockTimer = clockContainer.querySelector("h1");
 
-function setTime() {
-  const date2 = new Date("March");
-  const heur = date2.getHours();
-  const minute = date2.getMinutes();
-  const seconde = date2.getSeconds();
-  const day = date2.getDay();
-
-  clockTime.innerHTML = `${heur > 12 ? `오후 ${heur - 12}` : heur}:${
-    minute < 10 ? `0${minute}` : minute
-  }:${seconde < 10 ? `0${seconde}` : seconde}`;
-  setInterval(setTime, 1000);
+function getTime() {
+  const date = new Date();
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  // if (seconds < 10){
+  //     clockTimer.innerHTML = `${hour}:${minutes}:0${seconds}`;
+  // }else{
+  //     clockTimer.innerHTML = `${hour}:${minutes}:${seconds}`;
+  // } 이렇게 할수도 있지만, 미니 if문을 이용하여 코드를 짜면 훨씬 더 간결하게 할 수 있다.
+  clockTimer.innerHTML = `${hour < 10 ? `0${hour}` : hour}:${
+    minutes < 10 ? `0${minutes}` : minutes
+  }:${seconds < 10 ? `0${seconds}` : seconds}`;
 }
-
 function init() {
-  setTime();
+  getTime();
+  setInterval(getTime, 1000);
 }
-
 init();
